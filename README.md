@@ -1,2 +1,0 @@
-# JavaScriptsFunctions
-Created with CodeSandbox

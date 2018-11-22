@@ -1,0 +1,1314 @@
+<script type="text/javascript">
+//Added for Defect ESPRD00969738
+
+function openNewWindowEDMS(docURL)
+{
+      //alert ('docURL = ' + docURL);
+      //window.open (docURL, '_blank', 'width=400, height=450, resizable=yes');
+       try{
+      var fileURLPath;
+       var thisForm = '111';
+      var loginID = document.getElementById(thisForm+':loginUserId').value;
+      fileURLPath = docURL + '&loginID=' + loginID;
+      var urlPath = "+ "/SAEDMSDownloadServlet")%>";
+      urlPath += '?path=' + fileURLPath;
+      //alert ('fileURLPath = ' + fileURLPath);
+     // alert(urlPath);
+      var dwnldFile = window.open(urlPath,'_blank', "fileDwnldWindow", "height=500,width=400,resizable=yes");
+      dwnldFile.focus();
+      }
+      catch(e){}
+}
+function authAjaxcall(){
+	var element = document.getElementById('111'+':1authorizationType');
+	var hidvalue=document.getElementById('111'+':authTypeAjaxContrl').value;
+	if(element.value == 'HC'){
+		if(hidvalue == 'startOR'){
+			document.getElementById('111'+':1buttonForAjaxHSBC').click();
+		}else{
+			document.getElementById('111'+':1buttonForAjaxHSBC2').click();
+			}
+		 document.getElementById('111'+':authTypeAjaxContrl').value='startHC';
+		 
+		 
+		}else if( element.value == 'OR'){
+			if(hidvalue == 'startHC'){
+				document.getElementById('111'+':1buttonForAjaxHSBC').click();
+			}else{
+				document.getElementById('111'+':1buttonForAjaxHSBC1').click();
+				}
+			 document.getElementById('111'+':authTypeAjaxContrl').value='startOR';
+			 
+			}else {
+				if(hidvalue == 'startHC'){
+					document.getElementById('111'+':authTypeAjaxContrl').value='stop';
+					document.getElementById('111'+':1buttonForAjaxHSBC2').click();
+				}
+				if(hidvalue == 'startOR'){
+					document.getElementById('111'+':authTypeAjaxContrl').value='stop';
+					document.getElementById('111'+':1buttonForAjaxHSBC1').click();
+				}
+			}
+}
+
+//End
+function disableOnbeforeunload(e) 
+{
+                e =  (e) ? e : window.event; 
+                if (e.target) targ = e.target;
+                else if (e.srcElement) targ = e.srcElement;
+                if (targ.nodeType == 3) // defeat Safari bug
+                                targ = targ.parentNode;
+                
+                var out=document.getElementById("testInput")
+                                
+                if(targ.tagName.toLowerCase()=="a")
+                {
+                                flagDuplicateConfirmMsg=true;
+                }
+                else if(targ.tagName.toLowerCase()=="input" && targ.type.toLowerCase() == "submit")
+                {
+                                flagDuplicateConfirmMsg=true;
+                }
+
+}
+document.onmousedown = disableOnbeforeunload;
+function enableOnbeforeunload(e)
+{
+                disableDuplicateConfirmMsg();
+}
+document.onmouseup = enableOnbeforeunload;
+
+var thisHref = window.location.href;
+               flagWarn=true; 
+                flagRole=true;
+                flagDuplicateConfirmMsg = false; 
+                cancelFlag=false;
+                window.onbeforeunload = function(evt) { 
+
+                evt = (evt) ? evt : window.event; 
+                
+                if(cancelFlag)
+                {
+               
+                evt.returnValue = "If data has been entered and not saved, it will be lost. \n Select 'OK' to navigate away from the page \n or 'Cancel' to return to the page to save the data.";
+                
+                }
+                
+                
+                if(flagWarn) { 
+                
+                
+                                if( flagRole == 'true'|| flagRole == true) { 
+                
+                                if(!flagDuplicateConfirmMsg) { 
+
+                                evt.returnValue = "If data has been entered and not saved, it will be lost. \n Select 'OK' to navigate away from the page \n or 'Cancel' to return to the page to save the data.";
+                                flagWarn = true;
+                                flagRole = true;
+                
+                                disableDuplicateConfirmMsg();
+                                                                                                                                }
+                                                                }
+                                                                else {
+                                                                
+                                                                flagWarn = true;
+                                                                flagRole = false;
+                                                                
+                                                                
+                                                                }
+                                } else {
+                                
+                                flagWarn=true;
+                                }
+                }
+
+                function disableDuplicateConfirmMsg()
+                {
+                                flagDuplicateConfirmMsg = true; 
+                                setTimeout("enableConfirmMsg()", 50);
+                }
+
+
+                function enableConfirmMsg()
+                { 
+                                flagDuplicateConfirmMsg = false;
+                } 
+                
+                var thisForm = '111';
+	function setFocus(id)
+	{
+		if(document.getElementById(thisForm+':focusId')!=null){
+			document.getElementById(thisForm+':focusId').value = id;
+		}
+		
+	}
+	
+	
+	
+	document.onclick = function initCal(){                                    
+        if(!jscalendarBPageLoaded)
+            {jscalendarInit();}
+      }
+      
+	  // Script added for Defect ESPRD00773231
+	 function openNewWindow(docURL)
+	 {
+	 	//alert ('Inside openNewWindow()');
+	 	window.open (docURL, '_blank', 'width=400, height=450, resizable=yes');
+	 }
+	 var ajaxFocuseOn = false;
+	function ajaxDoFocuse(flag)
+	{
+		ajaxFocuseOn=flag;
+	}
+	function focusOnAjaxLoad()
+	{
+		if(ajaxFocuseOn)
+		{
+		if(document.getElementById('111'+':commonProFocus')){
+			var isFocus = document.getElementById('111'+':commonProFocus').value;
+			if(isFocus) 
+			{
+				document.location.href='#'+ isFocus;
+				ajaxFocuseOn = false;
+			}
+			}
+		}
+	}
+	/* CR ESPRD00907649 Start */
+	function setFocusElement(focuseTo)
+	{
+		if(document.getElementById('111'+':commonProFocus')!=null){
+			document.getElementById('111'+':commonProFocus').value = focuseTo;
+		}
+	}
+
+
+
+	
+	function formatVision(num) {
+               
+                var dec=2;        
+                var tempNum = num;
+                num = num.toString().replace(/\$|\,/g,'');
+                digit=num.split(".")[0];
+                decim=num.split(".")[1];
+                if(isNaN(num)) {
+                   return tempNum;
+                }else{
+                 if(decim == undefined)
+				{
+					return digit;
+				}
+                if(decim.length==0){
+                              return  digit;
+                }
+                return num;
+                }
+                }
+	function formatCurrency(num, dec) {
+               
+                var fdigit=2;        
+                if(dec == null || dec==undefined){
+                                dec=fdigit;
+                }
+                var tempNum = num;
+                num = num.toString().replace(/\$|\,/g,'');
+                if(isNaN(num)) {
+                                                return tempNum;
+                }
+                try{
+                                if( num.trim() == ''){
+                                                return '';
+                                }
+                }
+                catch(e){}
+                var result = num;
+                resultStr=result+"";
+                digit=resultStr.split(".")[0];
+                decim=resultStr.split(".")[1];
+                
+                if(digit == "" && decim == undefined)
+				{
+					return "";
+				}
+				
+                if(dec ==2 && decim == undefined){
+                                decim="00";
+                }  
+                if(dec ==4 && decim == undefined){
+                                decim="0000";
+                }             
+            
+                if(decim.length==1){
+                                decim=decim+"0";
+                }
+                for (var i = 0; i < Math.floor((digit.length-(1+i))/3); i++){
+                                digit = digit.substring(0,digit.length-(4*i+3))+','+digit.substring(digit.length-(4*i+3));       
+                }
+                return digit+"."+decim;
+                                                
+}
+
+	function formatCurrencyForApprovedAmt(num, dec) {
+        
+        var fdigit=2;        
+        if(dec == null || dec==undefined){
+                        dec=fdigit;
+        }
+        var tempNum = num;
+        num = num.toString().replace(/\$|\,/g,'');
+        if(isNaN(num)) {
+                                        return tempNum;
+        }
+        try{
+                        if( num.trim() == ''){
+                                        return '';
+                        }
+        }
+        catch(e){}
+        var result = num;
+        resultStr=result+"";
+        digit=resultStr.split(".")[0];
+        decim=resultStr.split(".")[1];
+        
+        if(digit == "" && decim == undefined)
+		{
+			return "";
+		}
+		
+        if(dec ==2 && decim == undefined){
+                        decim="00";
+        }  
+        if(dec ==4 && decim == undefined){
+                        decim="0000";
+        }             
+    
+        if(decim.length==1){
+                        decim=decim+"0";
+        }
+        
+        return digit+"."+decim;
+                                        
+}
+
+
+     function removeComma(objVal){
+ 
+                if(objVal != null){
+       objVal= objVal.replace(new RegExp(",", 'g'),"");
+                }
+    return objVal;
+}
+	
+	
+	
+	//Curser Refresh Start
+	if (window.addEventListener) 
+	{
+		window.addEventListener("load", focusOnLoad, false);
+	}
+	else if (window.attachEvent) //IE exclusive method for binding an event
+	{
+		window.attachEvent("onload", focusOnLoad);
+	}
+	else if (document.getElementById) //support older modern browsers
+	{
+		window.onload=focusOnLoad;
+	}
+	
+	function focusOnLoad() 
+	{
+	<%-- added for ESPRD00969450 --%>
+	     //Added for the PSYSID- Start 
+	     try
+	     { 
+	    document.getElementById('111:1LineItems:editableServiceAuthLineItemDataTable:addStatusList').value = 'P';
+		var invokePMRIndSYSID = document.getElementById(thisForm + ':1:invokePMRIndPSYSID').value;
+		//alert(' invokePMRIndSYSID value '+invokePMRIndSYSID)
+		//alert('3');
+		if(invokePMRIndSYSID != null && invokePMRIndSYSID != "")
+		{
+		 document.getElementById(thisForm + ':1:invokePMRIndPSYSID').value ="";
+		 document.getElementById(thisForm+invokePMRIndSYSID).click();
+			//alert('clicked--')
+		}	
+	     }
+	     catch(e){}
+	     //Added for the PSYSID- End
+	     	<%-- added for ESPRD00969450 end--%>
+	
+		if(document.getElementById('111'+':commonProFocus'))
+		{
+			var isFocus = document.getElementById('111'+':commonProFocus').value;
+			
+			if(isFocus) 
+			document.location.href='#'+ isFocus;
+			if(document.getElementById('111'+':updateModeFlag') != null)
+			{
+				var cursor = document.getElementById('111'+':updateModeFlag').value;
+				
+				if(cursor=='false')
+				{
+					var benefitPlanId = '111'+':1paperWork';
+					
+					component=document.getElementById(benefitPlanId);
+					component.focus();
+				}
+			}
+		}
+	}
+
+	function setstatusfocus()
+	{
+	
+	document.getElementById('111'+':commonProFocus').value='status';
+	
+	}
+	
+	
+	function hdrEPDSTClickAction(radioValue)
+	{
+	var radioObjectPrevValue = findObjectByPartOfID('hdrPaperworkActionInputHidden').value;
+	if(radioValue == radioObjectPrevValue)
+	{
+		return false;
+	}
+	else
+	{
+		var hiddenButtonObject = findObjectByPartOfID('hdrPaperworkActionHiddenButton');
+		hiddenButtonObject.click();
+	}	
+	}
+    //Curser Refresh End
+    
+    
+
+    
+function confirmationDeleteLineItem(link)
+{
+	flagWarn=false;
+	var ans = confirm("Are you sure you want to delete?");
+	if (ans == true) 
+	{
+	link.onclick();
+	return true;
+	}
+	else
+	{
+	return false;
+	}
+}
+
+
+function confirmationFilter(link, formOpen)
+{
+	flagWarn=false;
+	flagRole=false;
+	if(formOpen==true){
+		
+		var ans = confirm("If you Filter without saving your changes, the data will be lost. Do you want to filter without saving?");
+		if (ans == true) 
+		{
+			link.onclick();
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}else{
+		link.onclick();
+		return true;
+	}
+	
+}
+
+function confirmationAlertsFilter(link, addFormOpen, editFormOpen)
+{
+	flagWarn=false;
+	flagRole=false;
+	if(addFormOpen==true){
+		
+		var ans = confirm("If you Filter without saving your changes, the data will be lost. Do you want to filter without saving?");
+		if (ans == true) 
+		{
+			link.onclick();
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	if(editFormOpen==true){
+		
+		var ans = confirm("If you Filter without saving your changes, the data will be lost. Do you want to filter without saving?");
+		if (ans == true) 
+		{
+			link.onclick();
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}else{
+		link.onclick();
+		return true;
+	}
+	
+}
+
+function confirmationCancel(link)
+{
+	flagWarn=false;
+	flagRole=false;
+	
+		
+		var ans = confirm("If you Cancel without saving your changes, the data will be lost. Do you want to Cancel without saving?");
+		
+		if (ans == true) 
+		{
+			link.onclick();
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	
+	
+}
+
+function confirmationCancelAjax(link){
+	flagWarn=false;
+	flagRole=false;
+	
+		
+		var ans = confirm("If you Cancel without saving your changes, the data will be lost. Do you want to Cancel without saving?");
+		return ans;
+}
+
+function confirmationDeleteAddressee(link)
+{
+	flagWarn=false;
+	var ans = confirm("Are you sure you want to delete?");
+	if (ans == true) 
+	{
+	link.onclick();
+	return true;
+	}
+	else
+	{
+	return false;
+	}
+}
+
+function confirmationDelete(link)
+{
+	flagWarn=false;
+	var ans = confirm("Are you sure you want to delete this record?");
+	if (ans == true) 
+	{
+	  //link.onclick();
+	  return true;
+	}
+	else
+	{
+	return false;
+	}
+}
+
+function confirmCopy(link) 
+{ 
+	flagWarn=false;
+	var ans = confirm("All unsaved changes will be lost.");
+	if (ans == true) 
+	{
+	link.onclick();
+	return true;
+	}
+	else
+	{
+	return false;
+	}
+}
+
+function displayConfirmMsg()
+{
+    if(confirm("All unsaved changes will be lost."))
+	{
+        return true;
+    }
+    else
+	{
+        return false;
+    }
+    
+}
+
+function liSplSvcClickAction(radioValue)
+{
+	var radioObjectPrevValue = findObjectByPartOfID('liSplSvcActionInputHidden').value;
+	if(radioValue == radioObjectPrevValue)
+	{
+		return false;
+	}
+	else
+	{
+		var hiddenButtonObject = findObjectByPartOfID('liSplSvcActionHiddenButton');
+		hiddenButtonObject.click();
+	}	
+}
+  //For attachment
+function readFilename()
+{
+var file = document.getElementById("filename").value;
+var filename = findObjectByPartOfID('fileHidden');
+filename.value = file;
+}
+
+function toggleTest(obj,state)
+	{
+ var el = document.getElementById(obj);
+
+ if (state==1){
+  el.style.display = 'block';
+ }
+ else if (state==0){
+  el.style.display = 'none';
+ }
+ else if (state==2){
+  if (el.style.display == 'none'){
+   el.style.display = 'block'; 
+  }
+  else if ((el.style.display == 'block') || (el.style.display == '')){
+   el.style.display = 'none';
+  }
+ }
+}
+/*
+ * Used to display either '+' image or '-' image when a section 
+ * is closed or expanded respectively
+ */
+function plusMinusForRefreshTest(id,obj,hiddenTextId)
+{
+ var hiddenTxt = find(hiddenTextId);
+ var el = document.getElementById(id);
+
+
+ if (el.style.display == 'none')
+ {
+  obj.className = 'plus';
+  hiddenTxt.value = 'plus';
+ }
+ else if ((el.style.display == 'block')  || (el.style.display == ''))
+ {
+  obj.className = 'minus';
+  hiddenTxt.value = 'minus';
+ }
+ else if (el.style.display == '')
+ {
+  obj.className = 'minus';
+  hiddenTxt.value = 'minus';
+ }
+}
+//added for ESPRD00969450
+		
+function loadInitialRQToggleState()
+{
+
+	flagWarn=false;
+	flagRole=false;
+	
+	var ans = confirm("If you Cancel without saving your changes, the data will be lost. Do you want to Cancel without saving?");
+	if(ans)
+	{
+		if(document.getElementById('showHide_internalRequestingProvider4') != null)
+		{	
+			hideMe('showHide_internalRequestingProvider4');
+			var rqSysHid = document.getElementById('111:1RequestingProvider:plusMinus_RequestingProviderPSysId');
+			if (rqSysHid != null)
+			{
+				plusMinusForRefreshTest('showHide_internalRequestingProvider4',rqSysHid,'reqRequestingProviderPSysId_hidden');
+			}
+		}
+	}
+}
+function loadInitialEVToggleState()
+{
+
+	flagWarn=false;
+	flagRole=false;
+	
+	var ans = confirm("If you Cancel without saving your changes, the data will be lost. Do you want to Cancel without saving?");
+	if(ans)
+	{
+		if(document.getElementById('showHide_internal14') != null)
+		{	
+			hideMe('showHide_internal14');
+			var evSysHid = document.getElementById('111:11:1:1');
+			if (evSysHid != null)
+			{
+				plusMinusForRefreshTest('showHide_internal14',evSysHid,'1PSysId_hidden');
+			}
+			
+			
+		}
+		}
+}
+function loadInitialSVToggleState()
+{
+
+	flagWarn=false;
+	flagRole=false;
+	
+	var ans = confirm("If you Cancel without saving your changes, the data will be lost. Do you want to Cancel without saving?");
+	if(ans)
+	{
+		if(document.getElementById('showHide_lineItemServicingProviderPSysId') != null)
+		{	
+			hideMe('showHide_lineItemServicingProviderPSysId');
+			var svSysHid = document.getElementById('111:1LineItems:lineItemServicingProvider:servicingProvider:plusMinus_lineItemServicingProviderPSysId');
+			if (svSysHid != null)
+			{
+				plusMinusForRefreshTest('showHide_lineItemServicingProviderPSysId',svSysHid,'lineItemServicingProviderPSysId_hidden');
+			}
+			
+		}
+		}
+}
+
+function loadInitialToggleState()
+{	
+	if(document.getElementById('showHide_appeal') != null)
+	{	
+		hideMe('showHide_appeal');
+		plusMinusForRefreshTest('showHide_appeal',this,'reqAppeal_hidden');
+	}
+	if(document.getElementById('showHide_approved') != null)
+	{
+		hideMe('showHide_approved');
+		plusMinusForRefreshTest('showHide_approved',this,'reqApproved_hidden');
+	}	
+	if(document.getElementById('showHide_addlMemberInfo') != null)
+	{
+		hideMe('showHide_addlMemberInfo');
+		plusMinusForRefreshTest('showHide_addlMemberInfo',this,'addlMemberInfo_hidden');
+	}
+	if(document.getElementById('showHide_requestingProvider_contact') != null)
+	{
+		hideMe('showHide_requestingProvider_contact');
+		plusMinusForRefreshTest('showHide_requestingProvider_contact',this,'reqPrvContacts_hidden');
+	}	
+	if(document.getElementById('providerEnteredSAInfoNoteDiv') != null)
+	{
+		hideMe('providerEnteredSAInfoNoteDiv');
+		plusMinusForRefreshTest('providerEnteredSAInfoNoteDiv',this,'addlHdrNotes_hidden');
+	}	
+    if(document.getElementById('providerEnteredSAInfoRejectReasonsDiv') != null)
+	{
+		hideMe('providerEnteredSAInfoRejectReasonsDiv');
+		plusMinusForRefreshTest('providerEnteredSAInfoRejectReasonsDiv',this,'addlHdrRejectReasons_hidden');
+	}
+	if(document.getElementById('showHide_renderingProvider') != null)
+	{
+		hideMe('showHide_renderingProvider');
+		plusMinusForRefreshTest('showHide_renderingProvider',this,'renPrv_hidden');
+	}
+	if(document.getElementById('showHide_renderingProvider_Contact') != null)
+	{
+		hideMe('showHide_renderingProvider_Contact');
+		plusMinusForRefreshTest('showHide_renderingProvider_Contact',this,'renPrvContacts_hidden');
+	}
+	if(document.getElementById('showHide_referringProvider') != null)
+	{
+		hideMe('showHide_referringProvider');
+		plusMinusForRefreshTest('showHide_referringProvider',this,'refPrv_hidden');
+	}
+	if(document.getElementById('showHide_referringProvider_contacts') != null)
+	{
+		hideMe('showHide_referringProvider_contacts');
+		plusMinusForRefreshTest('showHide_referringProvider_contacts',this,'refPrvContacts_hidden');
+	}	
+	if(document.getElementById('showHide_headerDiagnosis') != null)
+	{
+		hideMe('showHide_headerDiagnosis');
+		plusMinusForRefreshTest('showHide_headerDiagnosis',this,'headerDiagnosis_hidden');
+	}	
+	if(document.getElementById('showHide_LIDME') != null)
+	{
+		hideMe('showHide_LIDME');
+		plusMinusForRefreshTest('showHide_LIDME',this,'LIDME_hidden');
+	}	
+	if(document.getElementById('showHide_LIDental') != null)
+	{
+		hideMe('showHide_LIDental');
+		plusMinusForRefreshTest('showHide_LIDental',this,'LIDental_hidden');
+	}	
+	if(document.getElementById('showHide_LIDiagnosis') != null)
+	{
+		hideMe('showHide_LIDiagnosis');
+		plusMinusForRefreshTest('showHide_LIDiagnosis',this,'LIDiagnosis_hidden');
+	}
+	if(document.getElementById('showHide_LINotes') != null)
+	{
+		hideMe('showHide_LINotes');
+		plusMinusForRefreshTest('showHide_LINotes',this,'LINotes_hidden');
+	}	
+	if(document.getElementById('showHide_addlLIInfo') != null)
+	{
+		hideMe('showHide_addlLIInfo');
+		plusMinusForRefreshTest('showHide_addlLIInfo',this,'addlLIInfo_hidden');
+	}
+    if(document.getElementById('showHide_LIHCSD') != null)
+	{
+		hideMe('showHide_LIHCSD');
+		plusMinusForRefreshTest('showHide_LIHCSD',this,'LIHCSD_hidden');
+	}	
+	if(document.getElementById('showHide_LIPatCond') != null)
+	{
+		hideMe('showHide_LIPatCond');
+		plusMinusForRefreshTest('showHide_LIPatCond',this,'LIPatCond_hidden');
+	}
+	if(document.getElementById('showHide_providerEnteredRequestingProvider') != null)
+	{
+		hideMe('showHide_providerEnteredRequestingProvider');
+		plusMinusForRefreshTest('showHide_providerEnteredRequestingProvider',this,'otherReqProvAddInfo_hidden');
+	}
+	if(document.getElementById('showHide_LIAmbulance') != null)
+	{
+		hideMe('showHide_LIAmbulance');
+		plusMinusForRefreshTest('showHide_LIAmbulance',this,'LIAmbulance_hidden');
+	}
+	if(document.getElementById('showHide_LISpinalManipulation') != null)
+	{
+		hideMe('showHide_LISpinalManipulation');
+		plusMinusForRefreshTest('showHide_LISpinalManipulation',this,'LISpinalManipulation_hidden');
+	}
+	if(document.getElementById('showhide_lineitemaudit') != null)
+	{
+		hideMe('showhide_lineitemaudit');
+		plusMinusForRefreshTest('showhide_lineitemaudit',this,'lineitemaudit_hidden');
+	} 
+   if(document.getElementById('showHide_diagnosis') != null)
+	{
+		hideMe('showHide_diagnosis');
+		plusMinusForRefreshTest('showHide_diagnosis',this,'diagnosis_hidden');
+	} 
+if(document.getElementById('showhide_alerts') != null)
+	{
+		hideMe('showhide_alerts');
+		plusMinusForRefreshTest('showhide_alerts',this,'alertsHiddenID');
+	} 
+if(document.getElementById('showHide_automatedLetter') != null)
+	{
+		hideMe('showHide_automatedLetter');
+		plusMinusForRefreshTest('showHide_automatedLetter',this,'automatedLetter_hidden');
+	} 
+if(document.getElementById('showHide_letterResponse') != null)
+	{
+		hideMe('showHide_letterResponse');
+		plusMinusForRefreshTest('showHide_letterResponse',this,'letterResponse_hidden');
+	} 
+if(document.getElementById('showHide_associatedpaperworkInfo') != null)
+	{
+		hideMe('showHide_associatedpaperworkInfo');
+		plusMinusForRefreshTest('showHide_associatedpaperworkInfo',this,'associatedpaperworkInfo_hidden');
+	} 
+	
+if(document.getElementById('showHide_lineitemassociatedpaperworkInfo') != null)
+	{
+		hideMe('showHide_lineitemassociatedpaperworkInfo');
+		plusMinusForRefreshTest('showHide_lineitemassociatedpaperworkInfo',this,'lineitemassociatedpaperworkInfo_hidden');
+	} 
+if(document.getElementById('showHide_dme') != null)
+	{	
+		hideMe('showHide_dme');
+		plusMinusForRefreshTest('showHide_dme',this,'dme_hidden');
+	}
+if(document.getElementById('showHide_dental') != null)
+	{	
+		hideMe('showHide_dental');
+		plusMinusForRefreshTest('showHide_dental',this,'dental_hidden');
+	}
+	//code for patient Event Detail
+		
+	    if(document.getElementById('showhide_relatedCaus') != null) 
+		{
+            hideMe('showhide_relatedCaus');
+            plusMinusForRefreshTest('showhide_relatedCaus',this,'relatedCaus_HiddenID');
+         }
+		if(document.getElementById('showhide_adReviewInst') != null) 
+		{
+            hideMe('showhide_adReviewInst');
+            plusMinusForRefreshTest('showhide_adReviewInst',this,'adReviewInstHiddenID');
+         }
+	 	if(document.getElementById('showhide_healthCareDeliv') != null)
+		{
+            hideMe('showhide_healthCareDeliv');
+            plusMinusForRefreshTest('showhide_healthCareDeliv',this,'healthCareDelivHiddenID');
+         }
+		if(document.getElementById('showhide_ambTrans') != null)
+		{
+            hideMe('showhide_ambTrans');
+            plusMinusForRefreshTest('showhide_ambTrans',this,'ambTransHiddenID');
+         }
+	    
+	    if(document.getElementById('showHide_LIHomeOxyTherapy') != null)
+		{
+			hideMe('showHide_LIHomeOxyTherapy');
+			plusMinusForRefreshTest('showHide_LIHomeOxyTherapy',this,'LIHomeOxyTherapy_hidden');
+		}
+		if(document.getElementById('showHide_LIHomeHealthCare') != null)
+		{
+			hideMe('showHide_LIHomeHealthCare');
+			plusMinusForRefreshTest('showHide_LIHomeHealthCare',this,'LIHomeHealthCare_hidden');
+		}
+		if(document.getElementById('showHide_LIHomeChiropractic') != null) 
+		{
+            hideMe('showHide_LIHomeChiropractic');
+            plusMinusForRefreshTest('showHide_LIHomeChiropractic',this,'LIHomeChiropractic_hidden');
+         } 
+		if(document.getElementById('showHide_LIHomeDMEPatientCondition') != null) 
+		{ 
+		   hideMe('showHide_LIHomeDMEPatientCondition');
+		   plusMinusForRefreshTest('showHide_LIHomeDMEPatientCondition',this,'LIHomeDMEPatientCondition_hidden');
+		}
+		 if(document.getElementById('showHide_LIHomeFuncLimitation') != null) 
+		 {
+			hideMe('showHide_LIHomeFuncLimitation');
+			plusMinusForRefreshTest('showHide_LIHomeFuncLimitation',this,'LIHomefuncLimitation_hidden');
+		} 
+		if(document.getElementById('showHide_LIHomeActvtsPermitt') != null) 
+		{
+			hideMe('showHide_LIHomeActvtsPermitt');
+			plusMinusForRefreshTest('showHide_LIHomeActvtsPermitt',this,'LIHomeActvtsPermitt_hidden');
+		} 
+		if(document.getElementById('showHide_LIHomeMentalStatus') != null)
+		 {
+			hideMe('showHide_LIHomeMentalStatus');
+			plusMinusForRefreshTest('showHide_LIHomeMentalStatus',this,'LIHomeMentalStatus_hidden');
+		} 
+		if(document.getElementById('showHide_patientHealthCareSerReview') != null)
+		 {
+			hideMe('showHide_patientHealthCareSerReview');
+			plusMinusForRefreshTest('showHide_patientHealthCareSerReview',this,'patientHealthCareSerReview_hidden');
+		}
+		if(document.getElementById('showHide_patientHealthcarelocinfo') != null)
+		 {
+			hideMe('showHide_patientHealthcarelocinfo');
+			plusMinusForRefreshTest('showHide_patientHealthcarelocinfo',this,'patientHealthcarelocinfo_hidden');
+		}
+		if(document.getElementById('showHide_patientEventTraceNumber') != null)
+		 {
+			hideMe('showHide_patientEventTraceNumber');
+			plusMinusForRefreshTest('showHide_patientEventTraceNumber',this,'patientEventTrace_hidden');
+		}
+		if(document.getElementById('showHide_internalNotes') != null)
+		 {
+			hideMe('showHide_internalNotes');
+			plusMinusForRefreshTest('showHide_internalNotes',this,'Notes_hidden');
+		}
+		
+		if(document.getElementById('providerEnteredSAInfoRejectReasonsDiv') != null)
+		{
+		hideMe('providerEnteredSAInfoRejectReasonsDiv');
+		plusMinusForRefreshTest('providerEnteredSAInfoRejectReasonsDiv',this,'addlHdrRejectReasons_hidden');
+        }
+        // SHOW_HIDE for 'Requsting Provider'
+        if(document.getElementById('showHide_internalRequestingProvider1') != null)
+		{	
+			hideMe('showHide_internalRequestingProvider1');
+			plusMinusForRefreshTest('showHide_internalRequestingProvider1',this,'reqAdditionalInformation_hidden');
+		}
+		if(document.getElementById('showHide_internalRequestingProvider2') != null)
+		{	
+			hideMe('showHide_internalRequestingProvider2');
+			plusMinusForRefreshTest('showHide_internalRequestingProvider2',this,'reqContactInformation_hidden');
+		}
+		if(document.getElementById('showHide_internalRequestingProvider3') != null)
+		{	
+			hideMe('showHide_internalRequestingProvider3');
+			plusMinusForRefreshTest('showHide_internalRequestingProvider3',this,'reqAdditionalSupplnInformation_hidden');
+		}
+		//added for ESPRD00969450
+		if(document.getElementById('showHide_internalRequestingProvider4') != null)
+		{	
+			hideMe('showHide_internalRequestingProvider4');
+			plusMinusForRefreshTest('showHide_internalRequestingProvider4',this,'reqRequestingProviderPSysId_hidden');
+		}
+
+		if(document.getElementById('showHide_internal14') != null)
+		{	
+			hideMe('showHide_internal14');
+			plusMinusForRefreshTest('showHide_internal14',this,'1PSysId_hidden');
+		}
+
+		if(document.getElementById('showHide_lineItemServicingProviderPSysId') != null)
+		{	
+			hideMe('showHide_lineItemServicingProviderPSysId');
+			plusMinusForRefreshTest('showHide_lineItemServicingProviderPSysId',this,'lineItemServicingProviderPSysId_hidden');
+		}
+		// SHOW_HIDE for 'Event Provider'
+		if(document.getElementById('showHide_internal11') != null)
+		{	
+			hideMe('showHide_internal11');
+			plusMinusForRefreshTest('showHide_internal11',this,'eventAdditionalInformation_hidden');
+		}
+		if(document.getElementById('showHide_internal12') != null)
+		{	
+			hideMe('showHide_internal12');
+			plusMinusForRefreshTest('showHide_internal12',this,'eventContactInformation_hidden');
+		}
+		if(document.getElementById('showHide_internal13') != null)
+		{	
+			hideMe('showHide_internal13');
+			plusMinusForRefreshTest('showHide_internal13',this,'eventAdditionalSupplnInformation_hidden');
+		}
+		
+		
+		if(document.getElementById('showHide_servicingprovider1') != null)
+		{	
+			hideMe('showHide_servicingprovider1');
+			plusMinusForRefreshTest('showHide_servicingprovider1',this,'serviceAdditionalInformation_hidden');
+		}
+		
+		if(document.getElementById('showHide_servicingprovider2') != null)
+		{	
+			hideMe('showHide_servicingprovider2');
+			plusMinusForRefreshTest('showHide_servicingprovider2',this,'serviceContactInformation_hidden');
+		}
+		
+		if(document.getElementById('showHide_servicingprovider3') != null)
+		{	
+			hideMe('showHide_servicingprovider3');
+			plusMinusForRefreshTest('showHide_servicingprovider3',this,'serviceAdditionalSupplnInformation_hidden');
+		}
+		if(document.getElementById('showHide_MemberNameAddress') != null)
+		{	
+			hideMe('showHide_MemberNameAddress');
+			plusMinusForRefreshTest('showHide_MemberNameAddress',this,'MemberNameAddress_hidden');
+		}
+		if(document.getElementById('showHide_healthcareServiceReview') != null)
+		{
+			hideMe('showHide_healthcareServiceReview');
+			plusMinusForRefreshTest('showHide_healthcareServiceReview',this,'healthCareServicesReviewInfo_hiddenID');
+		} 
+		if(document.getElementById('showHide_healthcareLoc') != null)
+		{
+			hideMe('showHide_healthcareLoc');
+			plusMinusForRefreshTest('showHide_healthcareLoc',this,'healthCareLoc_hiddenID');
+		} 
+		if(document.getElementById('showHide_internalPatientEventTraceNumber') != null)
+		{
+			hideMe('showHide_internalPatientEventTraceNumber');
+			plusMinusForRefreshTest('showHide_internalPatientEventTraceNumber',this,'internalPatientEventTrace_hidden');
+		}
+} 
+
+function toggleValidateButton(textID, buttonID) {
+    var textValue = findObjectByPartOfID(textID).value;
+    if(buttonID == null || buttonID == '' || textID == null || textID == '')
+    {        
+        return;
+    }    
+    else if(textValue != null && textValue !='')
+	{
+	    var validateButton =  findObjectByPartOfID(buttonID);
+	    validateButton.disabled = false;
+	}
+    else
+    {
+        var validateButton =  findObjectByPartOfID(buttonID);
+	    validateButton.disabled = true;
+    }
+}
+
+  /* small and big save start */
+
+   flagWarn=true;
+  
+	function warnBeforeExit(formId)
+	{		
+		if(document.getElementById(formId + ':'  + "fileSavedFlag").value == 'true')
+		{
+			flagWarn=false;
+		}		
+		
+		if(flagWarn==true)
+		{				
+		  	if(isFormChanged(formId) == true)
+		  	{
+		  		event.returnValue="The data on the page has been modified\n Do you want to discard your changes?";
+		  	}		  	
+	  	}
+	  	
+  	}
+  	
+	function isFormChanged(formId) 
+	{  
+	 var ele = document.forms[formId].length;
+	 for ( i=0; i < ele; i++ ) 
+	 {
+		  if (document.forms[formId].elements[i].type != undefined)
+		  {
+			 var isEleChanged = false;
+			 switch ( document.forms[formId].elements[i].type )
+			 { 
+			  case "text" : 
+			   if ( document.forms[formId].elements[i].value != document.forms[formId].elements[i].defaultValue ){
+			    isEleChanged = true;
+			   }
+			  break;
+			
+			  case "textarea" : 
+			   if ( document.forms[formId].elements[i].value != document.forms[formId].elements[i].defaultValue ){
+			    isEleChanged = true;
+			   }
+			  break;
+			
+			  case "radio" :
+			   val = "";
+			   if ( document.forms[formId].elements[i].checked != document.forms[formId].elements[i].defaultChecked ){
+			    isEleChanged = true;
+			   }
+			  break;
+			
+			  case "select-one" : 
+			   for ( var x =0 ; x <document.forms[formId].elements[i].length; x++ ) {
+			    if ( document.forms[formId].elements[i].options[ x ].selected 
+			      != document.forms[formId].elements[i].options[ x ].defaultSelected ) {
+			        isEleChanged = true;
+			    }
+			   }
+			  break;
+			
+			  case "select-multiple" :
+			   for ( var x =0 ; x <document.forms[formId].elements[i].length; x++ ) {
+			    if ( document.forms[formId].elements[i].options[ x ].selected 
+			      != document.forms[formId].elements[i].options[ x ].defaultSelected ) {
+			        isEleChanged = true;
+			    }
+			   }
+			  break;
+			
+			  case "checkbox" :
+			    if ( document.forms[formId].elements[i].checked != document.forms[formId].elements[i].defaultChecked ){
+			     isEleChanged = true;
+			    }
+				break;
+			
+			  default:
+			   isEleChanged = false;
+			  break;
+			 }
+			 if(isEleChanged == true)
+			 {
+			 	return true;
+			 }		  
+		}		  
+	 }
+	 return false;
+	 }
+    
+	 /* small and big save end */
+	
+/*This method finds an object from the DOM by acception a part of it's ID as parameter.*/
+function findObjectByPartOfID(partOfID)
+{
+	for(i=0; i<document.forms.length; i++)
+	{
+		for(j=0; j<document.forms[i].elements.length; j++)
+		{
+			var idValue = document.forms[i].elements[j].id;
+			if(idValue.indexOf(partOfID)!=-1)
+			{
+				G_isFirstTime = false;
+				G_countObject = document.forms[i].elements[j];
+				return document.forms[i].elements[j];
+			}
+		}
+	}		
+	return null;
+}
+function accidenClickAction(radioValue)
+{
+	var radioObjectPrevValue = findObjectByPartOfID('accidentActionInputHidden').value;
+	if(radioValue == radioObjectPrevValue)
+	{
+		return false;
+	}
+	else
+	{
+		var hiddenButtonObject = findObjectByPartOfID('accidentActionHiddenButton');
+		hiddenButtonObject.click();
+	}	
+}
+function renderingClickAction(radioValue)
+{
+	var radioObjectPrevValue = findObjectByPartOfID('renderingActionInputHidden').value;
+	if(radioValue == radioObjectPrevValue)
+	{
+		return false;
+	}
+	else
+	{
+		var hiddenButtonObject = findObjectByPartOfID('renderingActionHiddenButton');
+		hiddenButtonObject.click();
+	}	
+}
+
+function pregnancyClickAction(radioValue)
+{
+	var radioObjectPrevValue = findObjectByPartOfID('pregnancyActionInputHidden').value;
+	if(radioValue == radioObjectPrevValue)
+	{
+		return false;
+	}
+	else
+	{
+		var hiddenButtonObject = findObjectByPartOfID('pregnancyActionHiddenButton');
+		hiddenButtonObject.click();
+	}	
+}
+
+	/*	This method is used to fire the event when the user clicks on the radio 
+		button specifiyng whether the Requesting and Event Provider are the
+		same or not.
+	*/
+	function doReqEventSameAction(radioValue)
+	{
+		var radioObjectPrevValue = findObjectByPartOfID('requestingSameAs1Hidden').value;
+		if(radioValue == radioObjectPrevValue)
+		{
+			return false;
+		}
+		else
+		{
+			var hiddenButtonObject = findObjectByPartOfID('reqSameEventProvHiddenButton');
+			hiddenButtonObject.click();
+		}	
+	}
+	
+//function confirmationDelete(link)
+	//{
+	//	flagWarn=false;
+	//	var ans = confirm("Are you sure you want to delete?");
+	//	if (ans == true) 
+	//	{
+	//		link.onclick();
+	//		return true;
+	//	}
+	//	else
+	//	{
+	//		return false;
+	//	}
+	//}
+
+	/*	This javacript will be called on clicking delete button 
+		in order to have a confirmation window.
+	*/
+	function confirmationOnDeleteClick(link)
+		{
+			flagWarn=false;
+			var ans = confirm("Are you sure you want to delete?");
+			if (ans == true) 
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		<%-- added for ESPRD00969450  --%>
+
+    function callOnLoad()
+     {
+
+	//RQ -Start
+	
+
+        try{
+
+        	var selectIndexRq =document.getElementById(thisForm + ':1:1RequestingProvider:addinternalRequestingProviderPSysId:radioIndexValue').value;
+
+        	if(selectIndexRq !=-1)
+        	{
+        		document.getElementById(thisForm + ':1:1RequestingProvider:addinternalRequestingProviderPSysId:requestingProviderPSysIdDataTable:'+selectIndexRq+':paperWork').checked = true;
+        	}
+
+        	else
+        	{
+        	 	
+        	 var indexRq=document.getElementById(thisForm +':1:1RequestingProvider:addinternalRequestingProviderPSysId:selectRqRadio').value;
+        	
+        	if(indexRq != -1)
+        	{
+        		
+        		//alert('value SA Index '+	
+        		//document.getElementById(thisForm + ':1:1RequestingProvider:addinternalRequestingProviderPSysId:requestingProviderPSysIdDataTable:'+indexRq+':paperWork'));
+        		document.getElementById(thisForm + ':1:1RequestingProvider:addinternalRequestingProviderPSysId:requestingProviderPSysIdDataTable:'+indexRq+':paperWork').checked = true;
+        	  }
+        	}
+           
+            }
+
+    catch(e){}
+	
+	//RQ -Ends
+	//Ev -Start
+	try
+	{
+	
+	var selectIndexEV=document.getElementById(thisForm + ':1:').value;	
+
+	if(selectIndexEV!=-1)
+	{
+		document.getElementById(thisForm + ':1:11'+selectIndexEV+':eventRadioButton').checked = true;	
+	}	
+		
+	else
+	{		
+	var indexEV=document.getElementById(thisForm + ':1:11:1:').value ;
+	
+	if(indexEV != -1)
+	  {
+		
+		document.getElementById(thisForm + ':1:11:1:'+indexEV+':eventRadioButton').checked = true;
+	   }
+	}
+	}
+	catch(e){} 
+	//Ev -Ends  
+    //SV - Start
+    try
+	{
+   	
+    
+    var selectIndexSV=document.getElementById(thisForm + '').value ;
+
+    if(selectIndexSV != -1)
+    {
+    	document.getElementById(thisForm + '').checked = true;  
+    }
+    else
+    {
+    var indexSV =document.getElementById(thisForm + ':1:1LineItems:lineItemServicingProvider:servicingProvider:lineItemServicingProviderPSysId:selectSvRadio').value;
+
+     
+    if(indexSV != -1)
+	  {
+    	 
+		document.getElementById(thisForm + ':1:1LineItems:lineItemServicingProvider:servicingProvider:lineItemServicingProviderPSysId:servicingProviderPSysIdDataTable:'+indexSV+':servicingProvRadioButton').checked = true;
+	   }
+	}
+	} 
+    catch(e){}
+   }
+   
+</script>
+   
